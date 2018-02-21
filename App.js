@@ -9,7 +9,8 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
 import { Button } from 'react-native';
 
@@ -23,28 +24,19 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
 
-  onPressLearnMore(){
-
-  }
-
   render() {
+
+    const img = "https://static.pexels.com/photos/837500/pexels-photo-837500.jpeg"
+    const name = "Medusa"
+
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Button
-          onPress={this.onPressLearnMore}
-          title="Learn More 2"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <View style={styles.artistBox}>
+          <Image style={styles.image} source={{uri:img}} />
+          <View style={styles.info}>
+            <Text style={styles.name}>{name}</Text>
+          </View>
+        </View>
       </View>
     );
   }
@@ -53,18 +45,28 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: "column", //column, row
+    //justifyContent: 'center', //flex-start, center, flex-end, space-around, space-between
+    //alignItems: 'center', //flex-start, center, flex-end, stretch
+    flexWrap: "wrap", //wrap, nowrap
+    backgroundColor: '#f1f1f1',
+    
   },
-  welcome: {
+  artistBox:{
+    backgroundColor: "#fff",
+    flexDirection: "row"
+  },
+  info:{
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image:{
+    width: 150,
+    height: 150,
+  },
+  name:{
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
